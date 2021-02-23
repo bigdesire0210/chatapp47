@@ -3,6 +3,8 @@ import {
     Switch,
     Route
 } from 'react-router-dom'
+import { AuthProvider } from './AuthService'
+import LoggedInRoute from './LoggedInRoute'
 
 
 import React from "react"
@@ -14,16 +16,16 @@ import Room from './pages/Room'
 
 const App = () => {
     return (
-        <>
+        <AuthProvider>
             <h1>Chat</h1>
             <Router>
                 <Switch>
-                    <Route path="/" exact component={Room} />
+                    <LoggedInRoute path="/" exact component={Room} />
                     <Route path="/login" exact component={Login} />
                     <Route path="/signup" exact component={SignUp} />
                 </Switch>
             </Router>
-        </>
+        </AuthProvider>
     )
 }
 
