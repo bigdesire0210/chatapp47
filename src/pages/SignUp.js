@@ -3,23 +3,27 @@ import firebase from '../config/firebase'
 
 import { useState } from 'react'
 
-const SignUp = () => {
+const SignUp = ({ history }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [name, setName] = useState('')
 
-    const handleSubmit = e => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then((user) => {
-                //Signed in
-                console.log(user)
+
+            .then(({ user }) => {
+                user.updateProfile({
+                    displayName: name
+                })
+
+            })
+
+            .then(() => {
+                history.push('/')
             })
 
             .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // ...
-                console.log(error)
             })
     }
 
@@ -48,6 +52,18 @@ const SignUp = () => {
                         placeholder='Password'
                         onChange={e => {
                             setPassword(e.target.value)
+                        }}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='name'>Name</label>
+                    <input
+                        name='name'
+                        type='text'
+                        id='name'
+                        placeholder='name'
+                        onChange={e => {
+                            setName(e.target.value)
                         }}
                     />
                 </div>

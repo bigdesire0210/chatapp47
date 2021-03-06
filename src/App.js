@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 import { AuthProvider } from './AuthService'
 import LoggedInRoute from './LoggedInRoute'
-
+import styled from 'styled-components'
 
 import React from "react"
 
@@ -17,7 +17,7 @@ import Room from './pages/Room'
 const App = () => {
     return (
         <AuthProvider>
-            <h1>Chat</h1>
+            <ChatH1>チャット</ChatH1>
             <Router>
                 <Switch>
                     <LoggedInRoute path="/" exact component={Room} />
@@ -29,5 +29,10 @@ const App = () => {
     )
 }
 
+const ChatH1 = styled.h1`
+text-align: center;
+color: red;
+font-size: 30px
+`
 
 export default App
