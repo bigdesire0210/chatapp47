@@ -1,5 +1,4 @@
 # Getting Started with Create React App
-このアプリはCodeVillageの講義で作成したチャットアプリです
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
